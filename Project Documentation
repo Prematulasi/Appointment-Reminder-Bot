@@ -1,0 +1,410 @@
+# Appointment Reminder Bot – Project Documentation
+
+## 1. Introduction
+
+In today’s fast-paced world, people frequently miss important appointments such as medical visits, interviews, meetings, and service bookings due to poor reminder mechanisms. Traditional reminder systems are often manual, inefficient, and lack personalization.
+
+The **Appointment Reminder Bot** is an automated, intelligent scheduling assistant designed to store appointment details, understand user preferences, and send timely reminders through a chatbot-driven interface. The system reduces no-shows, improves time management, and enhances user experience.
+
+---
+
+## 2. Objectives of the Project
+
+The main objectives of this project are:
+
+* To design and develop an automated appointment scheduling and reminder system
+* To allow users to create, update, and cancel appointments easily
+* To send smart reminders based on appointment type and user preferences
+* To integrate chatbot interaction with backend scheduling logic
+* To minimize missed appointments through timely notifications
+
+---
+
+## 3. Scope of the Project
+
+The scope of the Appointment Reminder Bot includes:
+
+* User appointment management (add, update, cancel)
+* Storage of appointment and user data in a database
+* Automated reminder scheduling
+* Notification delivery via email/SMS (configurable)
+* Rule-based chatbot interaction
+
+### Out of Scope
+
+* Advanced voice assistant integration
+* Paid third-party notification services (optional extension)
+* Large-scale distributed deployment
+
+---
+
+## 4. System Architecture
+
+The system follows a modular client-server architecture:
+
+1. **User Interface / Chatbot Layer** – Accepts user input
+2. **Backend API Layer** – Processes requests and business logic
+3. **Database Layer** – Stores user and appointment data
+4. **Scheduler Engine** – Triggers reminders at correct times
+5. **Notification Service** – Sends reminders via email/SMS
+
+This layered approach ensures scalability, maintainability, and flexibility.
+
+---
+
+## 5. Technology Stack
+
+| Component            | Technology                   |
+| -------------------- | ---------------------------- |
+| Programming Language | Python                       |
+| Backend Framework    | FastAPI                      |
+| Database             | SQLite / PostgreSQL          |
+| Scheduler            | APScheduler                  |
+| Chatbot              | Rule-based / Rasa (optional) |
+| Notifications        | SMTP Email / SMS API         |
+| Deployment           | Docker (optional)            |
+
+---
+
+## 6. Functional Requirements
+
+### 6.1 User Management
+
+* The system shall allow user registration
+* The system shall store user contact details
+* The system shall store reminder preferences
+
+### 6.2 Appointment Management
+
+* The system shall allow users to create appointments
+* The system shall allow modification of appointment details
+* The system shall allow cancellation of appointments
+
+### 6.3 Reminder Management
+
+* The system shall calculate reminder times automatically
+* The system shall send reminders before appointments
+* The system shall update appointment status after reminder delivery
+
+### 6.4 Chatbot Interaction
+
+* The chatbot shall guide users to schedule appointments
+* The chatbot shall respond to basic user queries
+* The chatbot shall confirm successful actions
+
+---
+
+## 7. Non-Functional Requirements
+
+* **Performance:** System should handle multiple reminders efficiently
+* **Reliability:** Reminders should not be missed
+* **Usability:** Simple and user-friendly interaction
+* **Security:** User data should be stored securely
+* **Scalability:** System should support future enhancements
+
+---
+
+## 8. Database Design
+
+### 8.1 Users Table
+
+Stores user information and reminder preferences.
+
+* user_id (Primary Key)
+* name
+* email
+* phone
+* reminder_mode
+
+### 8.2 Appointments Table
+
+Stores appointment details and reminder schedules.
+
+* appointment_id (Primary Key)
+* user_id (Foreign Key)
+* title
+* appointment_time
+* reminder_time
+* status
+
+---
+
+## 9. Workflow Description
+
+1. User interacts with chatbot or UI
+2. User provides appointment details
+3. Backend validates and stores data
+4. Scheduler calculates reminder time
+5. Reminder engine monitors schedule
+6. Notification is sent at reminder time
+7. Appointment status is updated
+
+---
+
+## 10. Use Case Description
+
+### Use Case: Schedule Appointment
+
+**Actor:** User
+
+**Steps:**
+
+1. User requests to schedule an appointment
+2. System asks for date and time
+3. User provides details
+4. System confirms appointment
+5. Reminder is scheduled automatically
+
+---
+
+## 11. Testing Strategy
+
+* Unit testing for API endpoints
+* Functional testing for appointment creation
+* Scheduler testing for reminder triggers
+* Notification delivery testing
+
+---
+
+## 12. Advantages of the System
+
+* Reduces missed appointments
+* Saves time for users and organizations
+* Fully automated reminder process
+* Easy to extend with new features
+
+---
+
+## 13. Limitations
+
+* Internet connectivity required
+* Basic NLP in rule-based chatbot
+* Limited notification channels in base version
+
+---
+
+## 14. Future Enhancements
+
+* WhatsApp and mobile app integration
+* AI-based NLP chatbot
+* Google Calendar synchronization
+* Admin dashboard for analytics
+
+---
+
+## 15. Conclusion
+
+The Appointment Reminder Bot provides an efficient and automated solution for managing appointments and sending reminders. By integrating chatbot interaction, backend scheduling, and notification services, the system improves reliability and user experience. This project demonstrates practical application of backend development, automation, and chatbot systems.
+
+---
+
+## 16. Software Requirement Specification (SRS)
+
+### 16.1 Purpose
+
+The purpose of this document is to specify the functional and non-functional requirements of the Appointment Reminder Bot system in detail. This SRS serves as a reference for developers, testers, and evaluators.
+
+### 16.2 Intended Audience
+
+* Project evaluators
+* Software developers
+* Test engineers
+* End users
+
+### 16.3 Overall Description
+
+The Appointment Reminder Bot is a chatbot-based application that helps users schedule appointments and receive automated reminders. It interacts with users via chat, stores data in a database, and uses a scheduler to trigger reminders.
+
+### 16.4 Functional Requirements
+
+* FR1: The system shall allow users to create appointments
+* FR2: The system shall store appointment details securely
+* FR3: The system shall calculate reminder times automatically
+* FR4: The system shall send reminders before appointments
+* FR5: The system shall allow appointment cancellation
+
+### 16.5 Non-Functional Requirements
+
+* NFR1: The system shall be available 24/7
+* NFR2: The system shall respond within 2 seconds
+* NFR3: The system shall be scalable for future growth
+* NFR4: The system shall ensure data security
+
+---
+
+## 17. Flowcharts
+
+### 17.1 Overall System Flowchart
+
+```
+Start
+  |
+  v
+User interacts with Chatbot/UI
+  |
+  v
+Provide appointment details
+  |
+  v
+Backend validates input
+  |
+  v
+Store data in Database
+  |
+  v
+Scheduler sets reminder time
+  |
+  v
+Wait until reminder time
+  |
+  v
+Send Notification (Email/SMS)
+  |
+  v
+End
+```
+
+---
+
+### 17.2 Appointment Scheduling Flowchart
+
+```
+Start
+  |
+  v
+User requests appointment
+  |
+  v
+System asks date & time
+  |
+  v
+User provides details
+  |
+  v
+Is input valid?
+  |        \
+ Yes        No
+  |          \
+  v           v
+Save data   Ask again
+  |
+  v
+Schedule reminder
+  |
+  v
+Confirmation sent
+  |
+  v
+End
+```
+
+---
+
+### 17.3 Reminder Trigger Flowchart
+
+```
+Start
+  |
+  v
+Scheduler checks database
+  |
+  v
+Reminder time reached?
+  |        \
+ Yes        No
+  |          \
+  v           v
+Send reminder  Wait
+  |
+  v
+Update status
+  |
+  v
+End
+```
+
+---
+
+## 18. UML Diagrams
+
+### 18.1 Use Case Diagram (Textual Representation)
+
+```
+        +-------------------+
+        |       User        |
+        +-------------------+
+           |   |    |   |
+           |   |    |   |
+           v   v    v   v
+   Schedule  Update  Cancel  Receive
+  Appointment Appointment Appointment Reminder
+```
+
+**Description:** The user interacts with the system to manage appointments, while the system automatically handles reminders.
+
+---
+
+### 18.2 Sequence Diagram (Textual Representation)
+
+```
+User -> Chatbot : Request appointment
+Chatbot -> Backend : Send details
+Backend -> Database : Store data
+Backend -> Scheduler : Set reminder
+Scheduler -> Notification : Trigger alert
+Notification -> User : Reminder sent
+```
+
+**Description:** This sequence shows the interaction order between components during appointment scheduling and reminder delivery.
+
+---
+
+### 18.3 ER Diagram (Textual Representation)
+
+```
+User (user_id, name, email, phone)
+   |
+   | 1-to-many
+   |
+Appointment (appointment_id, title, time, reminder_time, status)
+```
+
+**Description:** One user can have multiple appointments, and each appointment belongs to exactly one user.
+
+---
+
+## 19. Module-wise Documentation
+
+### 19.1 Chatbot Module
+
+* Handles user interaction
+* Collects appointment details
+* Sends responses to users
+
+### 19.2 Backend API Module
+
+* Processes business logic
+* Manages database operations
+* Exposes REST APIs
+
+### 19.3 Database Module
+
+* Stores user data
+* Stores appointment data
+* Maintains data integrity
+
+### 19.4 Scheduler Module
+
+* Monitors appointment times
+* Triggers reminders automatically
+
+### 19.5 Notification Module
+
+* Sends reminders via email/SMS
+* Handles delivery status
+
+---
+
+## 20. Final Notes
+
+This extended documentation fully covers SRS, flowcharts, UML explanations, and module-wise design. It can be directly used for academic submission, project reviews, and viva examinations.
