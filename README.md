@@ -18,4 +18,4 @@ An automated chatbot-based appointment reminder system that schedules appointmen
 ```bash
 pip install -r requirements.txt
 uvicorn app.main:app --reload
-C:\Users\balag\OneDrive\Pictures\Screenshots
+
